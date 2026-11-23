@@ -220,3 +220,6 @@ __marimo__/
 .streamlit/secrets.toml
 
 .databricks
+
+# Visual Studio (full IDE) cache folder
+.vs/

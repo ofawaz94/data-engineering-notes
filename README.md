@@ -1,2 +1,2 @@
 # data-engineering-notes
-My Data Engineering learning notes: Spark, SQL, pipelines
+My Data Engineering learning notes: Spark, pipelines and DE tools
