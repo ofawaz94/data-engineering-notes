@@ -17,7 +17,7 @@
 
 **Big Data** refers to datasets that are **too large, too fast, or too complex** for traditional databases to store and process efficiently.
 
-Think of data that grows to **tens or hundreds of terabytes (TBs)** or more.
+There is **no universal size threshold** for Big Data. A dataset becomes "big" when its volume, speed, or complexity exceeds what the available tools and team can handle effectively. This can happen at very different scales depending on the workload.
 
 ### Why did Big Data appear?
 
@@ -33,14 +33,16 @@ There are two ways to get more power:
 | | Vertical Scaling (Scale **Up**) | Horizontal Scaling (Scale **Out**) |
 |---|---|---|
 | **Idea** | Make **one** machine stronger (more RAM, CPU, disk) | Add **more** machines that work together |
-| **Limit** | Hard limit: a machine can only hold so much RAM/CPU | Practically no limit: just keep adding machines |
-| **Cost** | High-end hardware gets very expensive | Uses cheaper, commodity hardware |
-| **Failure** | One machine = single point of failure | If one machine fails, others continue |
+| **Limit** | A machine has finite CPU, memory, and storage | Capacity can grow by adding machines, though coordination and cost still impose limits |
+| **Cost** | Larger machines can become expensive | Many smaller machines can help, but networking and operations also cost money |
+| **Failure** | A single machine can be a single point of failure | Work can continue after a node failure if the system is designed with redundancy |
 | **Example** | Upgrading your laptop's RAM | A cluster of 100 servers |
 
 **The problem with vertical scaling:** no matter how much you upgrade a laptop (or a server), you eventually hit a **hardware limit**. The same happens with a traditional **RDBMS**: as its tables keep growing, a single database server can't keep up.
 
-> 💡 **Tip:** This is the core reason Big Data tools (Hadoop, Spark, etc.) exist: they **scale horizontally** across many machines instead of relying on one powerful machine.
+> 💡 **Tip:** This is one reason Big Data tools (Hadoop, Spark, etc.) are designed to distribute storage and processing across multiple machines instead of relying only on one powerful machine.
+
+Distributed processing has trade-offs: machines must exchange data over a network, and the system needs coordination and monitoring. For small datasets, a single server can be simpler and faster. A common distributed strategy is to **partition** data into pieces so different nodes can work on them in parallel.
 
 ---
 
@@ -71,10 +73,10 @@ Data comes in different forms and we have to deal with all of them.
 | Type | Description | Examples |
 |---|---|---|
 | **Structured** | Fixed schema of rows & columns | SQL tables, Excel sheets |
-| **Semi-structured** | Has some structure (tags/keys) but no fixed schema | JSON, XML, CSV, log files |
+| **Semi-structured** | Has some structure (tags/keys) but no fixed, enforced schema | JSON, XML, many log files |
 | **Unstructured** | No predefined structure | Images, videos, audio, PDFs, free text |
 
-> 💡 **Note:** CSV is often classified as **structured** since it's rows and columns. It's commonly called semi-structured because it has **no enforced schema or data types**: any row can be malformed.
+> 💡 **Note:** CSV is often treated as **structured** because it is organized into rows and columns. It can also be described as semi-structured when the file has no enforced schema or data types; classifications vary by context.
 
 ### 4. Veracity: *Can we trust it?*
 
@@ -113,10 +115,10 @@ Distributed System  → multiple machines working together (a cluster of nodes)
                     → easy to increase resources by adding more nodes
 ```
 
-- **Node:** a single machine in the cluster
-- **Cluster:** a group of nodes working together as one system
+- **Node:** a single machine (physical or virtual) participating in a system
+- **Cluster:** a group of nodes coordinated to work on shared tasks
 
-> ✅ **Key idea:** All good Big Data systems are based on **distributed systems**.
+> ✅ **Key idea:** Many Big Data systems use distributed storage and processing to handle scale. Not every data workload needs a distributed system; a single well-sized server is often simpler and more efficient for smaller workloads.
 
 ---
 
@@ -135,7 +137,7 @@ The system can grow as demand grows (e.g. traffic spike during an **Amazon sale*
 
 The system should **keep working even if some components fail**.
 
-> 💡 **Tip:** In a cluster of hundreds of machines, failures are **normal, not rare**. That's why Big Data systems use **replication** (e.g. HDFS stores 3 copies of each data block by default), so losing one machine doesn't mean losing data.
+> 💡 **Tip:** In a large cluster, individual failures are expected. Systems use techniques such as **replication**, retries, and recovery. HDFS commonly uses a replication factor of 3 by default, though it can be configured; replication helps availability but does not replace backups.
 
 ### 3. Cost Effectiveness
 
@@ -166,10 +168,10 @@ When deploying a Big Data system, organizations must choose between **on-premise
 | **Deployment** | Hardware and software are hosted within the organization's facilities. | Resources and services are hosted on the provider's servers and accessed via the internet. |
 | **Cost Model** | High upfront costs for hardware, maintenance, and IT staff. | Pay-as-you-go pricing, with minimal upfront costs. |
 | **Scalability** | Limited by the organization's hardware capacity; scaling requires purchasing and installing new equipment. | Highly scalable: add resources on demand instantly. |
-| **Maintenance** | The organization is responsible for managing and maintaining hardware, software, and updates. | Managed by the cloud provider (e.g. AWS, Azure, GCP). |
+| **Maintenance** | The organization manages and maintains hardware, software, and updates. | The provider manages the underlying infrastructure; customers still manage their data, access, and often some software and configuration. |
 | **Flexibility** | Fixed capacity with little room for dynamic needs. | Highly flexible, allowing resources to scale up or down. |
-| **Security** | Data remains within the organization's premises, offering greater control. | Security is managed by the provider; often meets global compliance standards but might raise concerns for sensitive data. |
-| **Disaster Recovery** | Requires internal backups and disaster recovery systems. | Cloud providers offer built-in disaster recovery and redundancy. |
+| **Security** | Offers direct control over physical infrastructure, but the organization must secure it and its data. | Security responsibilities are shared between provider and customer; controls and compliance support depend on the service and configuration. |
+| **Disaster Recovery** | The organization plans and operates its own backups and recovery systems. | Providers offer redundancy and recovery options, but customers must configure and validate the recovery they need. |
 
 ### Types of Cloud
 
@@ -193,8 +195,8 @@ A system that holds an **organized collection of data** with a **well-defined sc
 - **Used for:** day-to-day operational data, e.g. orders, balance updates, inventory
 - **Best for OLTP** (Online Transaction Processing): many small, fast reads/writes
 - Mostly **structured data**, schema is well defined
-- Holds **recent data only** (not years of history), for better performance
-- Storage cost is **high**, which is another reason to keep only recent data there
+- Often holds current operational data; history may also be retained depending on the application and database design
+- Storage costs and query patterns may lead organizations to move older data to analytical storage, but this is not a rule for every database
 
 **Examples:** MySQL, PostgreSQL, Oracle, SQL Server
 
@@ -210,7 +212,7 @@ Stores **much more (historical) data** than a database and is built for **analys
 
 **Characteristics:**
 
-- Storage cost is **lower** than a database
+- Often separates analytical workloads from operational systems; storage cost depends on the platform and usage
 - Data is loaded using **ETL** (cleaned *before* storing)
 - **Best for OLAP** (Online Analytical Processing): complex queries over large amounts of data
 - Mostly structured data
@@ -264,6 +266,8 @@ A **data lake** is a **centralized repository** that stores **all kinds of raw d
 
 ## 7. ETL vs ELT
 
+ETL and ELT describe the **order of data pipeline steps**. They are common patterns, not strict rules tied to one storage technology: the choice depends on the source data, governance needs, and where transformation is most practical.
+
 ### ETL: Extract → Transform → Load
 
 *Used with data warehouses (OLAP). Example: **bank transactions**.*
@@ -299,7 +303,7 @@ When data comes from many different sources, we need a **data ingestion framewor
 | | ETL | ELT |
 |---|---|---|
 | **Order** | Transform **before** loading | Transform **after** loading |
-| **Target** | Data Warehouse | Data Lake / Lakehouse |
+| **Target** | Often a Data Warehouse | Often a Data Lake / Lakehouse |
 | **Data types** | Mostly structured | Any format |
 | **Raw data kept?** | No, only the cleaned version | Yes, raw data is kept and can be re-processed |
 | **Flexibility** | Must know the use case up front | Decide how to use the data later |
