@@ -40,7 +40,7 @@ There are two ways to get more power:
 
 **The problem with vertical scaling:** no matter how much you upgrade a laptop (or a server), you eventually hit a **hardware limit**. The same happens with a traditional **RDBMS**: as its tables keep growing, a single database server can't keep up.
 
-> 💡 **Tip:** This is one reason Big Data tools (Hadoop, Spark, etc.) are designed to distribute storage and processing across multiple machines instead of relying only on one powerful machine.
+> **Tip:** This is one reason Big Data tools (Hadoop, Spark, etc.) are designed to distribute storage and processing across multiple machines instead of relying only on one powerful machine.
 
 Distributed processing has trade-offs: machines must exchange data over a network, and the system needs coordination and monitoring. For small datasets, a single server can be simpler and faster. A common distributed strategy is to **partition** data into pieces so different nodes can work on them in parallel.
 
@@ -54,7 +54,7 @@ The 5 V's are a framework for understanding the **challenges and characteristics
 
 The **size** of the data being generated.
 
-- ⚠️ **Myth:** Volume is **not** the only factor that makes data "big", and there is **no fixed size** that makes data "Big Data".
+- **Myth:** Volume is **not** the only factor that makes data "big", and there is **no fixed size** that makes data "Big Data".
 
 ### 2. Velocity: *How fast?*
 
@@ -76,7 +76,7 @@ Data comes in different forms and we have to deal with all of them.
 | **Semi-structured** | Has some structure (tags/keys) but no fixed, enforced schema | JSON, XML, many log files |
 | **Unstructured** | No predefined structure | Images, videos, audio, PDFs, free text |
 
-> 💡 **Note:** CSV is often treated as **structured** because it is organized into rows and columns. It can also be described as semi-structured when the file has no enforced schema or data types; classifications vary by context.
+> **Note:** CSV is often treated as **structured** because it is organized into rows and columns. It can also be described as semi-structured when the file has no enforced schema or data types; classifications vary by context.
 
 ### 4. Veracity: *Can we trust it?*
 
@@ -89,7 +89,7 @@ The **trustworthiness or quality** of the data.
 
 Data should provide **insights that help in making business decisions**. Collecting data that produces no value is just a cost.
 
-> 💡 **Memory trick:** Volume → *how much*, Velocity → *how fast*, Variety → *what kind*, Veracity → *how accurate*, Value → *how useful*.
+> **Memory trick:** Volume → *how much*, Velocity → *how fast*, Variety → *what kind*, Veracity → *how accurate*, Value → *how useful*.
 >
 > Originally there were only **3 V's** (Volume, Velocity, Variety). Veracity and Value were added later.
 
@@ -137,7 +137,7 @@ The system can grow as demand grows (e.g. traffic spike during an **Amazon sale*
 
 The system should **keep working even if some components fail**.
 
-> 💡 **Tip:** In a large cluster, individual failures are expected. Systems use techniques such as **replication**, retries, and recovery. HDFS commonly uses a replication factor of 3 by default, though it can be configured; replication helps availability but does not replace backups.
+> **Tip:** In a large cluster, individual failures are expected. Systems use techniques such as **replication**, retries, and recovery. HDFS commonly uses a replication factor of 3 by default, though it can be configured; replication helps availability but does not replace backups.
 
 ### 3. Cost Effectiveness
 
@@ -182,7 +182,7 @@ When deploying a Big Data system, organizations must choose between **on-premise
 | **Hybrid Cloud** | Mix of public + private | Public for **computation**, private for **sensitive data** |
 | **Community Cloud** | Shared by **multiple organizations** with a common concern | Hospitals sharing a healthcare cloud |
 
-> 💡 **Tip:** Cloud equivalents of Hadoop/Spark clusters you'll see a lot: **AWS EMR**, **GCP Dataproc**, **Azure HDInsight**, and **Databricks** (runs on all three).
+> **Tip:** Cloud equivalents of Hadoop/Spark clusters you'll see a lot: **AWS EMR**, **GCP Dataproc**, **Azure HDInsight**, and **Databricks** (runs on all three).
 
 ---
 
@@ -231,7 +231,7 @@ A **data lake** is a **centralized repository** that stores **all kinds of raw d
 
 **Examples:** HDFS, Amazon S3, Azure Data Lake Storage (ADLS), Google Cloud Storage
 
-> ⚠️ **Watch out:** Without proper organization and governance, a data lake can turn into a **"data swamp"**: lots of data that nobody can find or trust.
+> **Watch out:** Without proper organization and governance, a data lake can turn into a **"data swamp"**: lots of data that nobody can find or trust.
 
 ### Comparison
 
@@ -260,7 +260,7 @@ A **data lake** is a **centralized repository** that stores **all kinds of raw d
 - **Schema-on-write:** you define the structure **before** saving data. Data that doesn't fit is rejected. *(Databases, Warehouses)*
 - **Schema-on-read:** you save the data **as-is** and apply a structure only **when you read it**. *(Data Lakes, Spark)*
 
-> 💡 **Bonus: Data Lakehouse.** A modern architecture that combines the **cheap, flexible storage of a data lake** with the **reliability and performance of a data warehouse** (ACID transactions, schemas). Built on table formats like **Delta Lake**, **Apache Iceberg**, and **Apache Hudi**. Databricks is the best-known lakehouse platform.
+> **Bonus: Data Lakehouse.** A modern architecture that combines the **cheap, flexible storage of a data lake** with the **reliability and performance of a data warehouse** (ACID transactions, schemas). Built on table formats like **Delta Lake**, **Apache Iceberg**, and **Apache Hudi**. Databricks is the best-known lakehouse platform.
 
 ---
 
@@ -309,7 +309,7 @@ When data comes from many different sources, we need a **data ingestion framewor
 | **Flexibility** | Must know the use case up front | Decide how to use the data later |
 | **Example** | Bank transactions | Social media analysis |
 
-> 💡 **Tip:** Keeping the raw data (ELT) is very valuable: if you find a bug in your transformation logic or a new business question comes up, you can **re-process the original data** instead of losing it forever.
+> **Tip:** Keeping the raw data (ELT) is very valuable: if you find a bug in your transformation logic or a new business question comes up, you can **re-process the original data** instead of losing it forever.
 >
 > In practice this is often organized as the **Medallion Architecture**:
 > **Bronze** (raw) → **Silver** (cleaned) → **Gold** (business-ready aggregates).

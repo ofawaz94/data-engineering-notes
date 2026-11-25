@@ -24,7 +24,7 @@
 | **Massive storage**: data is too big for one machine | Split the data and spread it across many machines (**HDFS**) |
 | **Fast processing**: one machine would take too long | Process the pieces **in parallel** on many machines at once (**MapReduce**) |
 
-> 💡 **Background:** Hadoop was inspired by two Google papers: the **Google File System (2003)** and **MapReduce (2004)**. Doug Cutting and Mike Cafarella built it as an open-source version, and it was named after Doug Cutting's son's **toy elephant** 🐘, which is why the logo is an elephant.
+> **Background:** Hadoop was inspired by two Google papers: the **Google File System (2003)** and **MapReduce (2004)**. Doug Cutting and Mike Cafarella built it as an open-source version, and it was named after Doug Cutting's son's **toy elephant** 🐘, which is why the logo is an elephant.
 
 ---
 
@@ -38,7 +38,7 @@
 | **4. Cost Effectiveness** | Runs on **inexpensive, commodity hardware** instead of expensive specialized servers. |
 | **5. Open Source** | Free to use and modify. |
 
-> 💡 **Key idea: "Move the code to the data, not the data to the code."**
+> **Key idea: "Move the code to the data, not the data to the code."**
 > Data is huge (TBs), but the processing code is tiny (KBs). Sending the small code to the machines that hold the data is much faster than moving terabytes over the network. This is called **data locality**.
 
 ---
@@ -55,7 +55,7 @@
 
 The **Hadoop Ecosystem** is everything built **around** the core: extra tools that make Hadoop easier to use (SQL, scheduling, data ingestion, ML...).
 
-> 💡 **Hadoop 1 vs Hadoop 2:** In Hadoop 1, MapReduce did **both** processing **and** resource management. Hadoop 2 introduced **YARN** to take over resource management. That freed the cluster to run other engines too, such as **Spark**, not just MapReduce.
+> **Hadoop 1 vs Hadoop 2:** In Hadoop 1, MapReduce did **both** processing **and** resource management. Hadoop 2 introduced **YARN** to take over resource management. That freed the cluster to run other engines too, such as **Spark**, not just MapReduce.
 
 ---
 
@@ -107,7 +107,7 @@ SELECT country, COUNT(*) FROM users GROUP BY country;
 -- ...and Hive turns it into MapReduce jobs for you.
 ```
 
-> 💡 Hive also introduced the **Hive Metastore**: a catalog that stores table names, columns, and where the data files live. Spark and many modern tools still use it today.
+> Hive also introduced the **Hive Metastore**: a catalog that stores table names, columns, and where the data files live. Spark and many modern tools still use it today.
 
 ### 5. Pig
 
@@ -124,13 +124,13 @@ Moves data **between Hadoop and relational databases** (MySQL, Oracle, etc.):
 
 A **workflow scheduler**. You define workflows in **XML files** to **schedule and automate** your jobs (e.g. "run the Sqoop import, then the Hive query, then the export, every night at 2 AM"). Essential for scheduling **complex ETL workflows**.
 
-> 💡 Oozie is not an abstraction of MapReduce like Hive or Pig. It doesn't process data itself; it **orchestrates** other jobs. A modern equivalent is **Apache Airflow**.
+> Oozie is not an abstraction of MapReduce like Hive or Pig. It doesn't process data itself; it **orchestrates** other jobs. A modern equivalent is **Apache Airflow**.
 
 ### 8. HBase
 
 A **NoSQL, column-oriented database** that runs on top of HDFS and allows **real-time reads and writes**.
 
-> 💡 **Why do we need it?** HDFS is great for reading large files from start to end, but it **can't quickly look up or update a single record**. HBase adds that ability (e.g. "get the profile of user #12345 right now").
+> **Why do we need it?** HDFS is great for reading large files from start to end, but it **can't quickly look up or update a single record**. HBase adds that ability (e.g. "get the profile of user #12345 right now").
 
 ### 9. Mahout
 
@@ -149,7 +149,7 @@ Collects **logs and event data** from various sources (web servers, apps) and de
 
 - **Critical for reliability**: used by HBase, HDFS High Availability, Kafka, and others.
 
-> 💡 **Fun fact:** Many Hadoop tools are named after animals (Hadoop the elephant, Pig, Hive), and **ZooKeeper** is the one that "keeps the zoo in order".
+> **Fun fact:** Many Hadoop tools are named after animals (Hadoop the elephant, Pig, Hive), and **ZooKeeper** is the one that "keeps the zoo in order".
 
 ---
 
@@ -165,7 +165,7 @@ Collects **logs and event data** from various sources (web servers, apps) and de
 | **Workflow Management** | Oozie |
 | **Machine Learning** | Mahout |
 
-> 💡 **Memory trick for ingestion:** **S**qoop = **S**QL databases, **F**lume = **F**lowing (streaming) data.
+> **Memory trick for ingestion:** **S**qoop = **S**QL databases, **F**lume = **F**lowing (streaming) data.
 
 ---
 
