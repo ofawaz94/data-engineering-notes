@@ -95,8 +95,6 @@ Processes data by **dividing the work into smaller tasks that run in parallel**:
 
 **Decouples resource management from application execution.** YARN decides **which job gets how much CPU and memory, and on which machine**, while the application itself just does its work.
 
-➡️ Details in [06-yarn.md](06-yarn.md)
-
 ### 4. Hive
 
 A **query engine, not a database**. Writing MapReduce means writing Java, which is long and hard, so people wanted **SQL with the power of MapReduce**. Hive lets you write SQL-like queries (**HiveQL**) and **translates them into MapReduce jobs** behind the scenes.
