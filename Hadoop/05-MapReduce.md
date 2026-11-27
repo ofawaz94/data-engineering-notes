@@ -102,7 +102,7 @@ So it's **far cheaper to move the small thing (the code)** than the big thing (t
 
 **Run the computation on the same machine where the data is already stored**, so the data doesn't travel over the network.
 
-> **Note:** This is why HDFS and MapReduce fit together: HDFS already splits files into **blocks** across the DataNodes, so each task runs **on a node that holds its block**. ➡️ See [02-hdfs-architecture.md](../02-hdfs-architecture.md)
+> **Note:** This is why HDFS and MapReduce fit together: HDFS already splits files into **blocks** across the DataNodes, so each task runs **on a node that holds its block**. ➡️ See [02-HDFS-Architecture.md](02-HDFS-Architecture.md)
 
 ### 2. Local Processing
 
@@ -290,7 +290,7 @@ GROUP BY city;             -- Shuffle: group by key
 ### 6. Fault Tolerance
 
 - If a machine dies, its task is **re-run on another machine** that holds one of the other copies of the block (HDFS **replication = 3**).
-- The job still finishes. ➡️ See [03-hdfs-failures-and-ha.md](../03-hdfs-failures-and-ha.md)
+- The job still finishes. ➡️ See [03-HDFS-Failures-and-HighAvailability.md](03-HDFS-Failures-and-HighAvailability.md)
 
 ---
 
@@ -299,7 +299,7 @@ GROUP BY city;             -- Shuffle: group by key
 | Component | Role in the Job |
 |---|---|
 | **HDFS** | Stores the input as **blocks** (128 MB, replication 3) and stores the **final output** |
-| **YARN** | The **resource manager**: gives each map and reduce task a machine, CPU and memory ➡️ See [06-yarn.md](../06-yarn.md) |
+| **YARN** | The **resource manager**: gives each map and reduce task a machine, CPU and memory ➡️ See [06-Yarn.md](06-Yarn.md) |
 | **Data Locality** | Map tasks are scheduled **on the node holding the block**, so the code moves, not the data |
 
 ```text
