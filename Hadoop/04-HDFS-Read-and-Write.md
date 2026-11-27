@@ -45,7 +45,7 @@ Before looking at reads and writes, it helps to know how the machines are connec
 | Same rack | Rack switch only | Cheap |
 | Different rack | Rack switch → core switch → rack switch | Most expensive |
 
-➡️ Rack awareness and replica placement are explained in [02-hdfs-architecture.md](02-hdfs-architecture.md#8-rack-awareness)
+➡️ Rack awareness and replica placement are explained in [02-HDFS-Architecture.md](02-HDFS-Architecture.md#8-rack-awareness)
 
 ---
 
