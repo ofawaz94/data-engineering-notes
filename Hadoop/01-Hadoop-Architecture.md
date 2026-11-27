@@ -80,7 +80,7 @@ The **Hadoop ecosystem** is a collection of open-source projects and tools that 
 
 **Distributed storage** for very large files. It splits each file into **blocks** and stores them (with replicas) across many machines.
 
-➡️ Details in [02-hdfs-architecture.md](02-hdfs-architecture.md)
+➡️ Details in [02-HDFS-Architecture.md](02-HDFS-Architecture.md)
 
 ### 2. MapReduce
 
@@ -89,13 +89,13 @@ Processes data by **dividing the work into smaller tasks that run in parallel**:
 - **Map:** each machine processes its own piece of the data
 - **Reduce:** the partial results are combined into the final answer
 
-➡️ Details in [05-mapreduce/notes.md](05-mapreduce/notes.md)
+➡️ Details in [05-MapReduce.md](05-MapReduce.md)
 
 ### 3. YARN (Yet Another Resource Negotiator)
 
 **Decouples resource management from application execution.** YARN decides **which job gets how much CPU and memory, and on which machine**, while the application itself just does its work.
 
-➡️ Details in [06-yarn.md](06-yarn.md)
+➡️ Details in [06-Yarn.md](06-Yarn.md)
 
 ### 4. Hive
 
