@@ -105,7 +105,7 @@ The DataNode is **permanently lost**, due to:
 | **One disk fails** on a DataNode | The DataNode can keep running on its remaining disks (configurable), and the lost blocks are re-replicated. |
 | **Whole rack fails** | **Rack awareness** guarantees that replicas are spread across at least 2 racks, so a copy survives elsewhere. |
 
-➡️ Rack awareness is explained in [02-hdfs-architecture.md](02-hdfs-architecture.md#8-rack-awareness)
+➡️ Rack awareness is explained in [02-HDFS-Architecture.md](02-HDFS-Architecture.md#8-rack-awareness)
 
 ---
 
