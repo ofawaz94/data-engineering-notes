@@ -137,7 +137,7 @@ Workers are **controlled by the master**: they report to the NameNode and take i
 > **Small correction:** DataNodes **do** send data to each other directly, for example when copying replicas during a write (see the pipeline in [section 9](#9-how-reading-and-writing-works)). But the **decisions** about what goes where always come from the NameNode.
 
 > **The NameNode is critical:** without it, nobody knows where any block is, so the data is unreachable even though it's still on the DataNodes. This is why the NameNode is a **Single Point of Failure** in basic setups, and why **High Availability (HA)** exists.
-> ➡️ Covered in [03-hdfs-failures-and-ha.md](03-hdfs-failures-and-ha.md)
+> ➡️ Covered in [03-HDFS-Failures-and-HighAvailability.md](03-HDFS-Failures-and-HighAvailability.md)
 
 ---
 
@@ -204,7 +204,7 @@ Replication factor 3 means you need **3× the storage**:
 
 > **Interview favorite:** "How much space does a 1 GB file take in HDFS?" → **3 GB** (with the default replication factor of 3), spread over 8 blocks × 3 = **24 block replicas**.
 
-➡️ NameNode failures and High Availability are covered in [03-hdfs-failures-and-ha.md](03-hdfs-failures-and-ha.md)
+➡️ NameNode failures and High Availability are covered in [03-HDFS-Failures-and-HighAvailability.md](03-HDFS-Failures-and-HighAvailability.md)
 
 ---
 
